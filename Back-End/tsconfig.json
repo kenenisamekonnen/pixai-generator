@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                  // Good for modern Node.js
+    "module": "commonjs",             // Works best with Node.js
+    "rootDir": "./src",               // Your TS source files
+    "outDir": "./dist",               // Compiled JS output
+    "strict": true,                   // Enable strict type checking
+    "esModuleInterop": true,         // Allow default imports from CJS modules
+    "skipLibCheck": true,            // Skip checking types in node_modules
+    "forceConsistentCasingInFileNames": true
+  }
+}

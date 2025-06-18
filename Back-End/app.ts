@@ -1,1 +1,0 @@
-console.log("Hello this is the start of backend code for JobVerse platform");
