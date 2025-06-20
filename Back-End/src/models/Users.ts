@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document} from "mongoose";
-import { hashPassword, comparePassword } from "../util/bcypt.js";
+import { hashPassword, comparePassword } from "../util/bcypt";
 
 export interface IExeprience {
     title: string;
