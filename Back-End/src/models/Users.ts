@@ -14,9 +14,10 @@ export interface IUser extends Document {
     fullName: string;
     password: string;
     email: string;
-    profilePicture?: string;
-    bio?: string;
-    experience?: IExeprience[];
+    creditBalance: number;
+    // profilePicture?: string;
+    // bio?: string;
+    // experience?: IExeprience[];
     createdAt: Date;
     updatedAt: Date;
 }
@@ -38,9 +39,10 @@ const UserSchema = new Schema<IUser>(
         fullName: { type: String, required: true},
         password: { type: String, required: true},
         email: { type: String, required: true},
-        profilePicture: { type: String, default: ""},
-        bio: { type: String},
-        experience: [ExpericeSchema]
+        creditBalance: { type: Number, default: 5},
+        // profilePicture: { type: String, default: ""},
+        // bio: { type: String},
+        // experience: [ExpericeSchema]
     },
     { timestamps: true }
 );
@@ -48,7 +50,7 @@ const UserSchema = new Schema<IUser>(
 
 UserSchema.pre("save", async function (next) {
     const user = this as IUser;
-    if(!user.isModified("passwrod")){
+    if(!user.isModified("password")){
         return next();
     };
 
