@@ -15,6 +15,9 @@ export interface IUser extends Document {
     password: string;
     email: string;
     creditBalance: number;
+    isVerified?: boolean;
+    emailToken?: string;
+    emailTokenExpires?: Date;
     // profilePicture?: string;
     // bio?: string;
     // experience?: IExeprience[];
@@ -40,6 +43,9 @@ const UserSchema = new Schema<IUser>(
         password: { type: String, required: true},
         email: { type: String, required: true},
         creditBalance: { type: Number, default: 5},
+        isVerified: { type: Boolean, default: false},
+        emailToken: { type: String },
+        emailTokenExpires: { type: Date },
         // profilePicture: { type: String, default: ""},
         // bio: { type: String},
         // experience: [ExpericeSchema]
@@ -62,7 +68,7 @@ UserSchema.pre("save", async function (next) {
     }
 });
 
-UserSchema.methods.comparedPassword = function (candidatePassword: string): Promise<boolean> {
+UserSchema.methods.comparePassword = function (candidatePassword: string): Promise<boolean> {
     return comparePassword(candidatePassword, this.password);
 };
 
