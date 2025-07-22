@@ -113,10 +113,7 @@ const Navbar = () => {
           {user ? (
             <ul className="list-none m-0 p-0" onClick={() => setIsMobileMenuOpen(false)}>
               <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/")}>Home</li>
-              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer"><p className="text-gray-200 max-sm:hidden pl-4">
-                Hi, {user.fullName}
-              </p></li>
-              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer"><p className="text-xs sm:text-sm font-medium text-gray-600">Credit left: {credit}</p></li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer"><p className="text-gray-600">Credit left: {credit}</p></li>
               <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/buy")}>
                 Buy Credits
               </li>
