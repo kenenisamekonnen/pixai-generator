@@ -110,15 +110,31 @@ const Navbar = () => {
       {/* mobile menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden animate-fade-in absolute top-16 right-0 bg-gradient-to-r from-white to-gray-300 shadow-lg rounded-lg p-4 w-48 z-10 cursor-zoom-in">
-          <ul className="list-none m-0 p-0" onClick={() => setIsMobileMenuOpen(false)}>
-            <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/")}>Home</li>
-            <li className="py-2 px-4  hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/buy")}>Buy Credits</li>
-            {user ? (
-              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={handleLogout}>Logout</li>
-            ) : (
-              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => setShowLogin(true)}>Login</li>
-            )}
-          </ul>
+          {user ? (
+            <ul className="list-none m-0 p-0" onClick={() => setIsMobileMenuOpen(false)}>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/")}>Home</li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer"><p className="text-gray-200 max-sm:hidden pl-4">
+                Hi, {user.fullName}
+              </p></li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer"><p className="text-xs sm:text-sm font-medium text-gray-600">Credit left: {credit}</p></li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/buy")}>
+                Buy Credits
+              </li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={handleLogout}>
+                Logout
+              </li>
+            </ul>
+          ): (
+            <ul>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/")}>Home</li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/buy")}>
+                Pricing
+              </li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => setShowLogin(true)}>
+                Login
+              </li>
+            </ul>
+          )}
         </div>
       )}
     </div>
