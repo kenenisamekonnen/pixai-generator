@@ -9,7 +9,7 @@ const Hero = () => {
       whileInView={{opacity:1, y:0}}
       viewport={{once:true}}
       >
-      <h1 className="text-3xl sm:text-4xl font-bold mb-4 dark:text-gray-200">
+      <h1 className="text-3xl text-amber-100 sm:text-4xl font-bold mb-4 dark:text-gray-200">
         Turn Your Imagination Into <span className="text-indigo-600">AI Images</span>
       </h1>
       <p className="text-lg text-gray-100 dark:text-gray-300 mb-12 max-w-2xl">
@@ -26,7 +26,7 @@ const Hero = () => {
         </div>
 
         <div className="text-left space-y-6">
-          <h3 className="text-2xl font-semibold">
+          <h3 className="text-2xl font-semibold text-gray-300 dark:text-gray-200">
             Meet <span className="text-indigo-600 font-bold">PixAi</span>: Your AI-Powered Image Generator
           </h3>
           <p className="text-gray-400 dark:text-gray-300">

@@ -10,8 +10,8 @@ const Testimonial = () => {
       whileInView={{opacity:1, y:0}}
       viewport={{once:true}}
       >
-      <h1 className="text-4xl font-bold text-center">Customer Testimonials</h1>
-      <p className="text-lg text-gray-600 text-center mb-12">
+      <h1 className="text-4xl font-bold text-center text-amber-100">Customer Testimonials</h1>
+      <p className="text-lg text-gray-100 text-center mb-12">
         Here's what our customers have to say:
       </p>
 

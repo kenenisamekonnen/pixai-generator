@@ -14,7 +14,7 @@ const Header = () => {
     const [opacity, setOpacity] = useState(1);
     const [colorIndex, setColorIndex] = useState(0);
 
-    const pattern = [assets.catFlying, assets.catSnow, assets.catFlying, assets.catSnow];
+    const pattern = [assets.catFlying, assets.catSnow, assets.catFlying, assets.catSnow, assets.catFlying];
     const colors = ['text-blue-400', 'text-purple-400', 'text-pink-400', 'text-green-400'];
 
     useEffect(() => {
@@ -109,30 +109,33 @@ const Header = () => {
             <img width={50} src={assets.star} alt="" />
         </button>
 
-        <div className="flex flex-col gap-4 p-4 mt-10 ml-40 justify-center items-center flex-wrap">
-            <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 rounded"
-                initial={{opacity:0}}
-                animate={{opacity:1}}
-                transition={{delay:1, duration:1}}
-                viewport={{once:true}}
-                >
+        <div className="flex flex-col items-center gap-4 p-4 mt-10 w-full">
+            <motion.div
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 place-items-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                viewport={{ once: true }}
+            >
                 {pattern.map((src, index) => (
-                    <motion.img
-                    whileHover={{scale:1.05, transitionDuration: 0.1}}
+                <motion.img
+                    whileHover={{ scale: 1.05, transitionDuration: 0.1 }}
                     key={index}
                     src={src}
                     alt={`Image ${index + 1}`}
-                    className="w-32 h-32 object-cover rounded hover:scale-105 transition-all duration-300 cursor-pointer max-sm:w-10"
-                    />
+                    className="w-32 h-32 max-sm:w-24 max-sm:h-24 object-cover rounded hover:scale-105 transition-all duration-300 cursor-pointer mx-auto"
+                />
                 ))}
             </motion.div>
-            <motion.p className="text-gray-400 mr-30 dark:text-gray-300"
-                initial={{opacity:0}}
-                animate={{opacity:1}}
-                transition={{delay:1.4, duration:1}}
-                viewport={{once:true}}
-                >
-             Generated Image by PixAi
+
+            <motion.p
+                className="text-center text-gray-400 dark:text-gray-300 text-sm sm:text-base"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4, duration: 1 }}
+                viewport={{ once: true }}
+            >
+                Generated Image by <span className="text-blue-400 font-semibold">PixAi</span>
             </motion.p>
         </div>
 

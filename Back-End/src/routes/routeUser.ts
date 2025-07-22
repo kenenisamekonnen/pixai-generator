@@ -5,6 +5,7 @@ import { protect } from "../middleware/auth";
 import { getUserProfile } from "../controllers/userGetting";
 import { refreshAccessToken } from "../middleware/refreshtoken";
 import { logoutUser } from "../controllers/logout";
+import { emailConfirmation } from "../controllers/resend";
 
 const router = Router();
 
@@ -24,6 +25,6 @@ router.post("/login", [
 // router.get("/profile", protect, getUserProfile);
 
 router.get('/credits', protect, userCredit);
-
+router.get('/confirm-email', emailConfirmation);
 
 export default router;

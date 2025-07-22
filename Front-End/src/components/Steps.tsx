@@ -9,7 +9,7 @@ const Steps = () => {
         whileInView={{opacity:1, y:0}}
         viewport={{once:true}}
         >
-        <h1 className="text-3xl sm:text-4xl font-semibold mb-2">How it works</h1>
+        <h1 className="text-3xl text-amber-100 dark:text-amber-50 sm:text-4xl font-semibold mb-2">How it works</h1>
         <p className="text-lg text-gray-100 mb-8">Transform Words into stuning Images</p>
         <div className="space-y-4 w-full max-w-3xl text-sm">
             {

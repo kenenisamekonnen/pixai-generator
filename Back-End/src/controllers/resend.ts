@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import User from '../models/Users';
+import User, { IUser } from '../models/Users';
 
 export const emailConfirmation = async (req: Request, res: Response): Promise<void> => {
 
@@ -13,7 +13,7 @@ export const emailConfirmation = async (req: Request, res: Response): Promise<vo
     const user = await User.findOne({
         emailToken,
         emailTokenExpires: { $gt: new Date() },
-    });
+    }).lean<IUser>();
 
     if (!user) {
         res.status(404).json({ message: "Token expired or invalid" });
@@ -27,5 +27,4 @@ export const emailConfirmation = async (req: Request, res: Response): Promise<vo
     await user.save();
     res.send("Email confirmed successfully. You can now log in.");
 
-    // Proceed with email confirmation logic
 }
