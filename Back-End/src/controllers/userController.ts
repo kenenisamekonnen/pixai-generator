@@ -118,14 +118,14 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
             return;
         };
 
-        if (!user.isVerified) {
-            res.status(403).json({ message: "Please confirm your email first." });
-            return;
-        }
+        // if (!user.isVerified) {
+        //     res.status(403).json({ message: "Please confirm your email first." });
+        //     return;
+        // }
 
         const isMatch = await comparePassword(password, user.password);
         if (!isMatch) {
-            res.status(401).json({ message: "Invalid email or password" });
+            res.status(401).json({ message: "Invalid email or password, or Try again later" });
             return;
         }
 
