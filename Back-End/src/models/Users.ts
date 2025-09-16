@@ -18,6 +18,7 @@ export interface IUser extends Document {
     isVerified?: boolean;
     emailToken?: string;
     emailTokenExpires?: Date;
+    googleId?: string;
     // profilePicture?: string;
     // bio?: string;
     // experience?: IExeprience[];
@@ -46,6 +47,7 @@ const UserSchema = new Schema<IUser>(
         isVerified: { type: Boolean, default: false},
         emailToken: { type: String },
         emailTokenExpires: { type: Date },
+        googleId: { type: String },
         // profilePicture: { type: String, default: ""},
         // bio: { type: String},
         // experience: [ExpericeSchema]

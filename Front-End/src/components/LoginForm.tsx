@@ -21,7 +21,6 @@ const LoginForm = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
-
     const handleSubmitRegistration = async (e: React.FormEvent) => {
         e.preventDefault();
         try {

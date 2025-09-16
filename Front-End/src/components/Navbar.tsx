@@ -113,7 +113,7 @@ const Navbar = () => {
           {user ? (
             <ul className="list-none m-0 p-0" onClick={() => setIsMobileMenuOpen(false)}>
               <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/")}>Home</li>
-              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer"><p className="text-gray-600">Your credits:{credit}</p></li>
+              <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer"><p>Your credits:<span className="text-blue-100">{credit}</span></p></li>
               <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/buy")}>
                 Buy Credit
               </li>
@@ -122,7 +122,7 @@ const Navbar = () => {
               </li>
             </ul>
           ): (
-            <ul>
+            <ul className="list-none m-0 p-0" onClick={() => setIsMobileMenuOpen(false)}>
               <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/")}>Home</li>
               <li className="py-2 px-4 hover:bg-fuchsia-200 cursor-pointer" onClick={() => navigate("/buy")}>
                 Pricing
