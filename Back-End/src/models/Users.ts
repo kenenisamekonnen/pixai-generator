@@ -18,8 +18,8 @@ export interface IUser extends Document {
     isVerified?: boolean;
     emailToken?: string;
     emailTokenExpires?: Date;
-    googleId?: string;
-    // profilePicture?: string;
+    googleId?: string | null;
+    picture?: string | null;
     // bio?: string;
     // experience?: IExeprience[];
     createdAt: Date;
@@ -41,14 +41,14 @@ const ExpericeSchema: Schema = new Schema<IExeprience>(
 const UserSchema = new Schema<IUser>(
     {
         fullName: { type: String, required: true},
-        password: { type: String, required: true},
+        password: { type: String},
         email: { type: String, required: true},
         creditBalance: { type: Number, default: 5},
         isVerified: { type: Boolean, default: false},
         emailToken: { type: String },
         emailTokenExpires: { type: Date },
         googleId: { type: String },
-        // profilePicture: { type: String, default: ""},
+        picture: { type: String, default: null },
         // bio: { type: String},
         // experience: [ExpericeSchema]
     },

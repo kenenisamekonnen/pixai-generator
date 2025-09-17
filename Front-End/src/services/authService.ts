@@ -30,3 +30,25 @@ export const loginUser = async (credential: LoginCredential): Promise<{user: Use
 export const logout = () => {
     localStorage.removeItem('authToken');
 };
+
+// --------------------
+// Google OAuth
+// --------------------
+export const loginWithGoogle = async (
+  googleToken: string
+): Promise<{ user: User; token: string }> => {
+  try {
+    const response = await apiCLient.post<{ user: User; token: string }>(
+      "/auth/google",
+      { token: googleToken }
+    );
+
+    if (response.data.token) {
+      localStorage.setItem("authToken", response.data.token);
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Google login failed", error);
+    throw error;
+  }
+};

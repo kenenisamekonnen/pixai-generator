@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import { useAppContext } from "../hooks/useAppContext";
 import type { RegistrationData } from "../types/auth";
 import { loginUser, registerUser } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 const LoginForm = () => {
 
@@ -35,6 +36,10 @@ const LoginForm = () => {
             }
         }
     }
+    const handleGoogleSuccess = (user: any) => {
+        console.log("Google login success:", user);
+        redirect("/")
+    };
 
     const handleSubmitLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -129,7 +134,9 @@ const LoginForm = () => {
             }
             <img onClick={() => setShowLogin(false)} src={assets.cancel} alt="cancel" className="absolute top-5 right-5 cursor-pointer bg-blue-200  p-1 bg-clip-padding" />
 
+
         </form>
+        <GoogleLoginButton onSuccess={handleGoogleSuccess} />
     </div>
   )
 }
