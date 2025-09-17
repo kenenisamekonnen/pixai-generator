@@ -38,7 +38,9 @@ const LoginForm = () => {
     }
     const handleGoogleSuccess = (user: any) => {
         console.log("Google login success:", user);
-        redirect("/")
+        navigate('/');
+        setUser(user);
+        setShowLogin(false);
     };
 
     const handleSubmitLogin = async (e: React.FormEvent) => {
