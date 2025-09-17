@@ -5,7 +5,6 @@ import { protect } from "../middleware/auth";
 import { getUserProfile } from "../controllers/userGetting";
 import { refreshAccessToken } from "../middleware/refreshtoken";
 import { logoutUser } from "../controllers/logout";
-import { emailConfirmation } from "../controllers/resend";
 import { googleAuth } from "../controllers/googleAuthController";
 
 const router = Router();
@@ -34,6 +33,5 @@ router.post("/google", async (req, res, next) => {
 // router.get("/profile", protect, getUserProfile);
 
 router.get('/credits', protect, userCredit);
-router.get('/confirm-email', emailConfirmation);
 
 export default router;
