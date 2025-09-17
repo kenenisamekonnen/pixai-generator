@@ -5,13 +5,10 @@ import { comparePassword } from "../util/bcypt";
 import { generateRefreshToken, generateToken } from "../util/generateToken";
 import { AuthenticateRequest } from "../middleware/auth";
 import crypto from "crypto";
-import { Resend } from "resend"
 import dotenv from "dotenv";
 
 
 dotenv.config();
-
-const resend = new Resend(process.env.RESENED_API_KEY || "");
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
     const errors = validationResult(req);
@@ -56,23 +53,8 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
         await newUser.save();
 
-        // Send verification email
-        const confirmationUrl = `https://PixAi.com/confirm-email?token=${emailToken}`;
 
-        await resend.emails.send({
-            from: "PixAi <noreply@yourdomain.com>",
-            to: email,
-            subject: "Confirm your email",
-            html: `<p>Hi ${fullName},</p>
-                   <p>Thank you for registering with PixAi! To complete your registration, please confirm your email address.</p>
-                   <p>Click the link below to verify your email:</p>
-                   <a href="${confirmationUrl}">${confirmationUrl}</a>
-                   <p>If you did not create an account, please ignore this email.</p>
-                   <p>This link will expire in 1 hour.</p>
-                   <p>Best regards,</p>`
-        });
-
-            res.status(201).json({
+        res.status(201).json({
             message: "User registered successfully",
             user: {
                 id: newUser._id,
