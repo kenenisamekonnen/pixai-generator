@@ -11,10 +11,15 @@ const app = express();
 const port = process.env.PORT || 5000
 
 app.use(express.json());
+const allowedOrigins = [
+    "http://localhost:5173",            // local dev
+    "https://pixai-delta.vercel.app"   // production frontend
+];
+
 app.use(cors({
-  origin: "https://pixai-delta.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,
+    origin: allowedOrigins,
+    methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+    credentials: true,  // only needed if using cookies
 }));
 
 app.use("/api/auth", routeUser);

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useAppContext } from "../hooks/useAppContext";
 import type { RegistrationData } from "../types/auth";
 import { loginUser, registerUser } from "../services/authService";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import GoogleLoginButton from "./GoogleLoginButton";
 
@@ -37,10 +37,14 @@ const LoginForm = () => {
         }
     }
     const handleGoogleSuccess = (user: any) => {
-        console.log("Google login success:", user);
-        navigate('/');
-        setUser(user);
-        setShowLogin(false);
+        try {
+            console.log("Google login success:", user);
+            navigate('/');
+            setUser(user);
+            setShowLogin(false);
+        } catch (error) {
+            console.error("Error handling Google login success:", error);
+        }
     };
 
     const handleSubmitLogin = async (e: React.FormEvent) => {
