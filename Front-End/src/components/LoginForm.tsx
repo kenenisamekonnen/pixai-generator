@@ -10,6 +10,7 @@ const LoginForm = () => {
 
     const [state, setState] = useState('Login');
     const {setUser, setShowLogin} = useAppContext();
+    const [loading, setLoading] = useState(false);
 
     const [form, setForm] = useState<RegistrationData>({
         fullName: "",
@@ -24,6 +25,7 @@ const LoginForm = () => {
     };
     const handleSubmitRegistration = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         try {
             await registerUser(form);
             alert("Registration successful");
@@ -49,6 +51,7 @@ const LoginForm = () => {
 
     const handleSubmitLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         try{
             const response = await loginUser(form);
             setUser(response.user);
@@ -70,12 +73,13 @@ const LoginForm = () => {
 
   return (
     <div 
-        className="fixed inset-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center h-screen">
+        className="fixed flex-col inset-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center h-screen 
+            bg-gradient-to-b from-blue-900/80 to-blue-950/90 shadow-lg w-80">
             {/* absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center */}
+        <GoogleLoginButton onSuccess={handleGoogleSuccess} />
         <form 
             onSubmit={state === 'Login' ? handleSubmitLogin : handleSubmitRegistration}
-            className="relative  p-10 rounded-xl text-slate-500"
-            >
+            className="relative  p-10 rounded-xl text-slate-500 flex flex-col ">
             <h1 className="text-center text-2xl text-neutral-400 font-medium">{state}</h1>
             { state === 'Login' ? 
                 <p className="text-sm text-sky-100">Wellcome back! Please sign in to continue</p>
@@ -124,9 +128,10 @@ const LoginForm = () => {
             <button 
                 type="submit"
                 name="button"
+                disabled={loading}
                 className="w-full bg-blue-600 text-white py-2 rounded-full 
                 cursor-pointer hover:scale-105 transition-all duration-500 mt-4">
-                {state === 'Login' ? "Login" : "Create account"}
+                {loading ? "Loading..." : (state === 'Login' ? "Login" : "Create account")}
             </button>
 
             {state === 'Login' ? 
@@ -142,7 +147,7 @@ const LoginForm = () => {
 
 
         </form>
-        <GoogleLoginButton onSuccess={handleGoogleSuccess} />
+        
     </div>
   )
 }
