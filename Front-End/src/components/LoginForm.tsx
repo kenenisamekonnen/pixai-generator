@@ -73,22 +73,25 @@ const LoginForm = () => {
 
   return (
     <div 
-        className="fixed flex-col inset-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center h-screen 
-            bg-gradient-to-b from-blue-900/80 to-blue-950/90 shadow-lg w-80">
+        className="fixed inset-0 z-10 backdrop-blur-sm bg-black/30 ">
             {/* absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center */}
-        <GoogleLoginButton onSuccess={handleGoogleSuccess} />
+        
         <form 
             onSubmit={state === 'Login' ? handleSubmitLogin : handleSubmitRegistration}
-            className="relative  p-10 rounded-xl text-slate-500 flex flex-col ">
+            className="relative  p-10 rounded-xl text-white flex-col flex justify-center items-center h-screen 
+            bg-gradient-to-b from-blue-900/80 to-blue-950/90 shadow-lg w-80">
             <h1 className="text-center text-2xl text-neutral-400 font-medium">{state}</h1>
             { state === 'Login' ? 
-                <p className="text-sm text-sky-100">Wellcome back! Please sign in to continue</p>
+                <p className="text-sm text-sky-100 mb-3.5">Please sign in to continue</p>
                 : 
-                <p className="text-sm text-sky-100"> Wellcome! please Sign up to start</p>
+                <p className="text-sm text-sky-100 mb-3.5"> Wellcome! please Sign up to start</p>
              }
+            <GoogleLoginButton onSuccess={handleGoogleSuccess} />
 
+            <div className="m-2">--------------//---------------</div>
+            or use email
             {state !== 'Login' &&
-                <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-5">
+                <div className="border px-6 py-2 flex items-center gap-2 rounded-full">
                     <input
                         name="fullName"
                         onChange={handleInputChange}
